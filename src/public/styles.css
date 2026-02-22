@@ -68,6 +68,31 @@ label {
   font-weight: 600;
 }
 
+.constraints {
+  margin: 0;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid rgba(30, 31, 28, 0.15);
+  border-radius: 10px;
+}
+
+.constraints legend {
+  padding: 0 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 600;
+}
+
+.check-row input {
+  width: auto;
+  margin: 0;
+}
+
 input {
   width: 100%;
   border: 1px solid rgba(30, 31, 28, 0.2);
@@ -97,6 +122,18 @@ button:hover {
   filter: brightness(1.05);
 }
 
+.actions {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.secondary {
+  color: var(--ink);
+  background: linear-gradient(100deg, #e7e5df, #f3f2ef);
+  border: 1px solid rgba(30, 31, 28, 0.2);
+}
+
 .error {
   min-height: 1.2rem;
   margin: 0;
@@ -106,6 +143,12 @@ button:hover {
 
 .results h2 {
   margin-top: 0;
+}
+
+.constraint-note {
+  margin: 0 0 0.8rem;
+  font-size: 0.92rem;
+  color: rgba(30, 31, 28, 0.74);
 }
 
 .result-grid {
@@ -150,6 +193,10 @@ button:hover {
   }
 
   .result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
     grid-template-columns: 1fr;
   }
 }

@@ -39,13 +39,25 @@
             <input id="corr" type="number" min="-1" max="1" step="0.0001" placeholder="e.g. 0.25" required />
           </label>
 
-          <button type="submit">Optimize</button>
+          <fieldset class="constraints">
+            <legend>Constraints</legend>
+            <label class="check-row">
+              <input id="long-only" type="checkbox" checked />
+              Long only (no short positions)
+            </label>
+          </fieldset>
+
+          <div class="actions">
+            <button type="submit">Optimize</button>
+            <button type="button" id="reset-btn" class="secondary">Reset</button>
+          </div>
           <p id="error" class="error" aria-live="polite"></p>
         </form>
       </section>
 
       <section class="panel results" id="results" aria-live="polite">
         <h2>Results</h2>
+        <p id="constraint-note" class="constraint-note">Constraint: Long only</p>
         <div class="result-grid">
           <article>
             <h3>EUR Weight</h3>
