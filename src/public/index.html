@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FX Markowitz Optimizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="panel">
+        <p class="kicker">FX OPTI</p>
+        <h1>Markowitz Portfolio Optimizer</h1>
+        <p class="desc">
+          Enter volatilities and correlation for <strong>EUR/USD</strong> and
+          <strong>USD/JPY</strong>. The app computes minimum-variance weights for
+          a fully invested non-USD basket.
+        </p>
+
+        <form id="optimizer-form" novalidate>
+          <label>
+            EUR/USD Volatility
+            <input id="vol-eurusd" type="number" min="0" step="0.0001" placeholder="e.g. 0.10" required />
+          </label>
+
+          <label>
+            USD/JPY Volatility
+            <input id="vol-usdjpy" type="number" min="0" step="0.0001" placeholder="e.g. 0.12" required />
+          </label>
+
+          <label>
+            Correlation (EUR/USD, USD/JPY)
+            <input id="corr" type="number" min="-1" max="1" step="0.0001" placeholder="e.g. 0.25" required />
+          </label>
+
+          <button type="submit">Optimize</button>
+          <p id="error" class="error" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel results" id="results" aria-live="polite">
+        <h2>Results</h2>
+        <div class="result-grid">
+          <article>
+            <h3>EUR Weight</h3>
+            <p id="w-eur">-</p>
+          </article>
+          <article>
+            <h3>JPY Weight</h3>
+            <p id="w-jpy">-</p>
+          </article>
+          <article>
+            <h3>USD Weight</h3>
+            <p id="w-usd">0.00%</p>
+          </article>
+          <article>
+            <h3>Portfolio Volatility</h3>
+            <p id="p-vol">-</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
