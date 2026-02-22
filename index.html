@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Markowitz 3-Asset Optimizer</title>
+  <title>Markowitz Sharpe Optimizer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
@@ -15,12 +15,21 @@
     <header class="hero">
       <p class="kicker">Portfolio Lab</p>
       <h1>Markowitz Sharpe Optimizer</h1>
-      <p class="subtitle">Three assets, one efficient portfolio. Tune assumptions and optimize instantly.</p>
+      <p class="subtitle">Pick between 2 and 15 assets, tune assumptions, and optimize instantly.</p>
     </header>
 
     <section class="grid">
       <article class="card input-card">
         <h2>Inputs</h2>
+        <div class="top-controls">
+          <label>
+            Number of Assets
+            <select id="assetCount"></select>
+          </label>
+        </div>
+
+        <h3>Asset Names</h3>
+        <div id="nameList" class="name-list"></div>
 
         <div class="table-wrap">
           <table>
@@ -31,47 +40,16 @@
                 <th>Volatility (%)</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>Asset A</td>
-                <td><input id="mu1" type="number" step="0.1" value="8" /></td>
-                <td><input id="vol1" type="number" step="0.1" value="15" /></td>
-              </tr>
-              <tr>
-                <td>Asset B</td>
-                <td><input id="mu2" type="number" step="0.1" value="12" /></td>
-                <td><input id="vol2" type="number" step="0.1" value="22" /></td>
-              </tr>
-              <tr>
-                <td>Asset C</td>
-                <td><input id="mu3" type="number" step="0.1" value="10" /></td>
-                <td><input id="vol3" type="number" step="0.1" value="18" /></td>
-              </tr>
-            </tbody>
+            <tbody id="assetRows"></tbody>
           </table>
         </div>
 
         <h3>Correlation Matrix</h3>
-        <div class="corr-grid">
-          <span class="corr-label corner" aria-hidden="true">\</span>
-          <span class="corr-label col">A</span>
-          <span class="corr-label col">B</span>
-          <span class="corr-label col">C</span>
-
-          <span class="corr-label row">A</span>
-          <input value="1.00" disabled aria-label="Correlation A with A" />
-          <input id="c12" type="number" step="0.01" min="-1" max="1" value="0.30" aria-label="Correlation A with B" />
-          <input id="c13" type="number" step="0.01" min="-1" max="1" value="0.45" aria-label="Correlation A with C" />
-
-          <span class="corr-label row">B</span>
-          <input id="c21" type="number" step="0.01" min="-1" max="1" value="0.30" aria-label="Correlation B with A" />
-          <input value="1.00" disabled aria-label="Correlation B with B" />
-          <input id="c23" type="number" step="0.01" min="-1" max="1" value="0.40" aria-label="Correlation B with C" />
-
-          <span class="corr-label row">C</span>
-          <input id="c31" type="number" step="0.01" min="-1" max="1" value="0.45" aria-label="Correlation C with A" />
-          <input id="c32" type="number" step="0.01" min="-1" max="1" value="0.40" aria-label="Correlation C with B" />
-          <input value="1.00" disabled aria-label="Correlation C with C" />
+        <div class="table-wrap">
+          <div id="corrBulk" class="corr-bulk"></div>
+        </div>
+        <div class="table-wrap">
+          <div id="corrGrid" class="corr-grid"></div>
         </div>
 
         <div class="controls">
@@ -87,9 +65,9 @@
             </select>
           </label>
           <label>
-            Grid Resolution
-            <input id="grid" type="range" min="80" max="1200" step="40" value="360" />
-            <span id="gridValue">360</span>
+            Iterations (Long-only)
+            <input id="iters" type="range" min="200" max="4000" step="200" value="1600" />
+            <span id="itersValue">1600</span>
           </label>
         </div>
 
@@ -105,16 +83,7 @@
           <div class="stat"><span>Sharpe Ratio</span><strong id="outSharpe">-</strong></div>
         </div>
 
-        <div class="weights">
-          <div class="w-row"><span>Asset A</span><span id="w1v">-</span></div>
-          <div class="bar"><div id="w1" class="fill a"></div></div>
-
-          <div class="w-row"><span>Asset B</span><span id="w2v">-</span></div>
-          <div class="bar"><div id="w2" class="fill b"></div></div>
-
-          <div class="w-row"><span>Asset C</span><span id="w3v">-</span></div>
-          <div class="bar"><div id="w3" class="fill c"></div></div>
-        </div>
+        <div id="weights" class="weights"></div>
 
         <h3>Risk vs Return</h3>
         <canvas id="frontier" width="640" height="320" aria-label="Risk Return Scatter"></canvas>

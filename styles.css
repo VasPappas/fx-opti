@@ -99,6 +99,17 @@ h3 {
   font-size: 1rem;
 }
 
+.top-controls {
+  margin-bottom: 10px;
+}
+
+.name-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
 .table-wrap {
   overflow-x: auto;
 }
@@ -133,10 +144,29 @@ select:focus {
 }
 
 .corr-grid {
+  --asset-count: 3;
   display: grid;
-  grid-template-columns: auto repeat(3, 1fr);
+  grid-template-columns: auto repeat(var(--asset-count), minmax(72px, 1fr));
   gap: 6px;
   align-items: center;
+  min-width: max-content;
+}
+
+.corr-bulk {
+  --asset-count: 3;
+  display: grid;
+  grid-template-columns: auto repeat(var(--asset-count), minmax(72px, 1fr));
+  gap: 6px;
+  align-items: center;
+  min-width: max-content;
+  margin-bottom: 6px;
+}
+
+.corr-bulk-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #5a4c36;
+  padding-left: 4px;
 }
 
 .corr-label {
@@ -238,10 +268,6 @@ label {
   width: 0%;
   transition: width 450ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-
-.fill.a { background: var(--asset-a); }
-.fill.b { background: var(--asset-b); }
-.fill.c { background: var(--asset-c); }
 
 #frontier {
   width: 100%;
