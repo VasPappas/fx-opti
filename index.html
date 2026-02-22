@@ -53,17 +53,25 @@
 
         <h3>Correlation Matrix</h3>
         <div class="corr-grid">
-          <input value="1.00" disabled />
-          <input id="c12" type="number" step="0.01" min="-1" max="1" value="0.30" />
-          <input id="c13" type="number" step="0.01" min="-1" max="1" value="0.45" />
+          <span class="corr-label corner" aria-hidden="true">\</span>
+          <span class="corr-label col">A</span>
+          <span class="corr-label col">B</span>
+          <span class="corr-label col">C</span>
 
-          <input id="c21" type="number" step="0.01" min="-1" max="1" value="0.30" />
-          <input value="1.00" disabled />
-          <input id="c23" type="number" step="0.01" min="-1" max="1" value="0.40" />
+          <span class="corr-label row">A</span>
+          <input value="1.00" disabled aria-label="Correlation A with A" />
+          <input id="c12" type="number" step="0.01" min="-1" max="1" value="0.30" aria-label="Correlation A with B" />
+          <input id="c13" type="number" step="0.01" min="-1" max="1" value="0.45" aria-label="Correlation A with C" />
 
-          <input id="c31" type="number" step="0.01" min="-1" max="1" value="0.45" />
-          <input id="c32" type="number" step="0.01" min="-1" max="1" value="0.40" />
-          <input value="1.00" disabled />
+          <span class="corr-label row">B</span>
+          <input id="c21" type="number" step="0.01" min="-1" max="1" value="0.30" aria-label="Correlation B with A" />
+          <input value="1.00" disabled aria-label="Correlation B with B" />
+          <input id="c23" type="number" step="0.01" min="-1" max="1" value="0.40" aria-label="Correlation B with C" />
+
+          <span class="corr-label row">C</span>
+          <input id="c31" type="number" step="0.01" min="-1" max="1" value="0.45" aria-label="Correlation C with A" />
+          <input id="c32" type="number" step="0.01" min="-1" max="1" value="0.40" aria-label="Correlation C with B" />
+          <input value="1.00" disabled aria-label="Correlation C with C" />
         </div>
 
         <div class="controls">

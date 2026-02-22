@@ -134,8 +134,25 @@ select:focus {
 
 .corr-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: auto repeat(3, 1fr);
   gap: 6px;
+  align-items: center;
+}
+
+.corr-label {
+  text-align: center;
+  font-size: 0.83rem;
+  font-weight: 700;
+  color: #5a4c36;
+}
+
+.corr-label.row {
+  text-align: left;
+  padding-left: 4px;
+}
+
+.corr-label.corner {
+  opacity: 0.5;
 }
 
 .controls {
